@@ -10,12 +10,11 @@
             "request": "launch",
             "program": "${workspaceFolder}/show_file",
             "args": ["./show_file.c", "5"],
-            "stopAtEntry": false,
+            "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "MiDebuggerPath": "C:/MinGW/bin/gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

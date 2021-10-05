@@ -5,7 +5,7 @@
 int main(int argc, char* argv[]) {
 	FILE* file=NULL;
 	const int args = 3;
-	int c;
+	long int c;
 
 	if (argc != args) {
 		fprintf(stderr,"Usage: %s <file_name>\n",argv[0]);
