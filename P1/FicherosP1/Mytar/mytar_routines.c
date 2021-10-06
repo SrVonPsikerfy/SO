@@ -42,8 +42,8 @@ int copynFile(FILE * origin, FILE * destination, int nBytes)
  * 
  * Returns: !=NULL if success, NULL if error
  */
-char* loadstr(FILE * file)
-{
+char* loadstr(FILE * file) {
+	
 	// reads chars until the end of a string --> [\0] or 
 	// the end of file [EOF]
 	int c, numChars = 1; 
