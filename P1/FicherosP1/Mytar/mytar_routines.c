@@ -33,8 +33,7 @@ copynFile(FILE * origin, FILE * destination, int nBytes)
  * Returns: !=NULL if success, NULL if error
  */
 char*
-loadstr(FILE * file)
-{
+loadstr(FILE * file) {
 	// Complete the function
 	return NULL;
 }
@@ -76,9 +75,102 @@ readHeader(FILE * tarFile, int *nFiles)
  * pairs occupy strlen(name)+1 bytes.
  *
  */
-int
-createTar(int nFiles, char *fileNames[], char tarName[])
-{
+int createTar(int nFiles, char *fileNames[], char tarName[]) {
+	FILE *tarFile;
+
+	//No hay archivos
+	if(nFiles <= 0){
+		//Pintar en la salida de error, pintar el error usando una variable, y use -> indica el error
+		fprintf(stderr,"%s",use);
+		return (EXIT_FAILURE);
+	}
+
+	//Nombre archivo | Modo Escritura
+	//No se ha podido abrir el archivo
+	if((tarFile = fopen (tarName, "wx")) == NULL){
+		fprintf(stderr,"The mtar file  %s can't be open.",tarName);
+		
+		perror(NULL);
+		return EXIT_FAILURE;
+	}
+
+	stHeaderEntry *header;
+	unsigned int headerSize;
+
+
+	// int n = sizeof(headerSize); == sizeof(unsigned int) ??????????;  si.
+
+	//Almacenamos en memoria nFiles*(tamaño del tipo stHeaderEntry) y devuelve la direccion de memoria 
+	if((header = malloc(sizeof(stHeaderEntry) * nFiles)) == NULL ){
+		perror("Can't allocate memory for the mtar Header");
+		fclose(tarFile);
+		remove(tarName);
+		return EXIT_FAILURE;
+	}
+
+
+	//El minimo de tamaño que tendrá seria del tamaño de un int (4 bytes)
+	headerSize = sizeof(int);
+	//Calculo del tamaño del tarball y copiamos el nombre de cada fichero en el array de strings del Header
+	for (int i = 0; i < nFiles; i++){
+		//Se usa 1 ya que el byte \0 no cuenta a la hora de llamar strlen
+		int namesize = strlen(fileNames[i] + 1);
+		//Reserva en memoria namesize bytes, y luego castea esa direccion de Mem devuelta a un char*
+		header[i].name = (char*) malloc(namesize);
+
+		if(header[i].name == NULL){
+			perror("ERROR: Couldn't create tarBall");
+			fclose(tarFile);
+			remove(tarName);
+
+			for (int j = 0; j < i; j++){
+				free(header[j].name); //Ya que hemos reservado mememoria de esa string
+			}
+
+			free(header); //Liberamos memoria de la propia estructura 
+
+			return EXIT_FAILURE;
+		}
+
+		//En caso de que no haya ningun fallo: Copiamos cada nombre de cada archivo, en el array del Header
+		strcpy(header[i].name, fileNames[i]);
+		//El tamaño de cada string + el tamaño en bytes de un unsigned int
+		headerSize += namesize + sizeof(header->size);
+	}
+	
+	
+	//Nos vamos a desplazar el tamaño del Header para empezar a escribir los datos. Usamos el fseek
+	fseek(tarFile, headerSize, SEEK_SET); //SEEK_SET It moves file pointer position to a given position from the beginning of the file.
+
+	FILE* inputFile;
+	for(int i = 0; nFiles; i++){
+		
+		inputFile = fopen(fileNames[i], "r");
+		//Si no se pudo abrir
+		if(inputFile == NULL){
+			fprintf(stderr, "Can't open file %s . Check if the file name is correct.",fileNames[i]);
+			perror(NULL);
+			fclose(tarFile);
+			remove(tarName);
+
+			//Tenemos que liberar la memoria liberada
+			for (int j = 0; j < i; j++){
+				free(header[j].name); //Ya que hemos reservado mememoria de esa string
+			}
+			free(header); //Liberamos memoria de la propia estructura 
+
+			return EXIT_FAILURE;
+		}
+		//Usamos INT_MAX con el objetivo de que copie siempre hasta el final del archivo
+		//De paso vamos calculando el tamaño total que tendra el mTar
+		header[i].size = copynFile(tarFile, inputFile,INT_MAX);
+
+		//Cerramos el archivo abierto	
+		fclose(inputFile);
+		
+	}
+
+
 	// Complete the function
 	return EXIT_FAILURE;
 }
