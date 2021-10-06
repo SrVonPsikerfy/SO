@@ -80,7 +80,7 @@ int createTar(int nFiles, char *fileNames[], char tarName[]) {
 
 	//No hay archivos
 	if(nFiles <= 0){
-		//Pintar en la salida de error, pintar el error usando una variable, y use -> indica el error
+		//Pintar en la salida estandar de error, pintar el error usando una variable, y use -> indica el error
 		fprintf(stderr,"%s",use);
 		return (EXIT_FAILURE);
 	}
@@ -167,12 +167,35 @@ int createTar(int nFiles, char *fileNames[], char tarName[]) {
 
 		//Cerramos el archivo abierto	
 		fclose(inputFile);
-		
 	}
 
+	rewind(tarFile); //Lleva el puntero de escritura al principio del fichero
 
+	//Escribimos el numero de archivos (solo 1 vez) del tarBall en el principio del fichero Tar
+	fwrite(&nFiles, sizeof(int), 1, tarFile); //(Qué escribir| Tamaño de lo que se va a escribir| Cuantas veces | Donde)
+	for (int i = 0; i < nFiles; i++){
+		//Nombre del archivos
+		fwrite(header[i].name, sizeof(char), strlen(header[i].name) + 1, tarFile);
+		//Tamaño del archivo
+		fwrite(&header[i].size, sizeof(header[i].size), 1 , tarFile);
+	}
+	//stdout salida estandar
+	fprintf(stdout,"The Mtar file was succesfully created!\n");
+
+
+	for (int j = 0; j < nFiles; j++){
+		free(header[j].name); //Ya que hemos reservado mememoria de esa string
+	}
+
+	free(header);
+
+	fclose(tarFile);
+	
 	// Complete the function
-	return EXIT_FAILURE;
+	return EXIT_SUCCESS;
+
+	// NOTA: podriamos no realizarlo en orden inverso y escribir primero los datos de numero de ficheros y nombre de ficheros
+	//y luego los datos
 }
 
 /** Extract files stored in a tarball archive
