@@ -1,0 +1,3 @@
+1. Para generar un ejecutable del programa show_file.c se puede hacer de dos maneras:
+
+  a. gcc archiv.c -o output ->esto compila y enlazada 
