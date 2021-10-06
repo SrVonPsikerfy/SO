@@ -47,7 +47,7 @@ char* loadstr(FILE * file)
 	// reads chars until the end of a string --> [\0] or 
 	// the end of file [EOF]
 	int c, numChars = 1; 
-	while((c=getc(file)) != "\0"){
+	while((c = getc(file)) != '\0'){
 		if(c == EOF)
 			return NULL;
 		numChars++;
@@ -83,7 +83,7 @@ stHeaderEntry* readHeader(FILE * tarFile, int *nFiles)
 
 	// we read the number of files supposed to be on the header
 	int numFiles = 0;
-	fread(numFiles, sizeof(int), 1, tarFile);
+	fread(&numFiles, sizeof(int), 1, tarFile);
 	
 	// memory reserve based on numFiles and the size of stHeaderEntry
 	newHeader = malloc(sizeof(stHeaderEntry) * numFiles);
@@ -263,7 +263,7 @@ int extractTar(char tarName[])
 	}
 
 	int nFiles;
-	stHeaderEntry* header = readHeader(tarFile, nFiles);
+	stHeaderEntry* header = readHeader(tarFile, &nFiles);
 
 	for (int i = 0; i < nFiles; i++) {
 		FILE* extractedFile;
