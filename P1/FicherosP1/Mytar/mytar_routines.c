@@ -14,11 +14,21 @@ extern char *use;
  *
  * Returns the number of bytes actually copied or -1 if an error occured.
  */
-int
-copynFile(FILE * origin, FILE * destination, int nBytes)
+int copynFile(FILE * origin, FILE * destination, int nBytes)
 {
-	// Complete the function
-	return -1;
+	 // number of bytes read
+	int numBytes = 0;
+
+	// while we haven't read all bytes, and we haven't reached the end 
+	// of the file, we read from origin and write to destination
+	int c; 
+	while(numBytes < nBytes && fread(&c, 1, 1, origin) != feof(origin)) {
+		fwrite(&c, 1, 1, destination);
+		numBytes++;
+	}
+
+	// return either numBytes read or -1 [nothing has been read]
+	return (numBytes ? numBytes : -1);
 }
 
 /** Loads a string from a file.
@@ -32,11 +42,29 @@ copynFile(FILE * origin, FILE * destination, int nBytes)
  * 
  * Returns: !=NULL if success, NULL if error
  */
-char*
-loadstr(FILE * file)
+char* loadstr(FILE * file)
 {
-	// Complete the function
-	return NULL;
+	// reads chars until the end of a string --> [\0] or 
+	// the end of file [EOF]
+	int c, numChars = 1; 
+	while((c=getc(file)) != "\0"){
+		if(c == EOF)
+			return NULL;
+		numChars++;
+	}
+
+	// return to the original start point in the stream
+	fseek(file, -numChars, SEEK_CUR);
+
+	// reserve space in heap and then store the string on the variable
+	char* strVar = malloc(numChars);
+	fgets(strVar, numChars, file);
+
+	// read \0 not read by fgets()
+	fgetc(file); 
+
+	// returns string (may be NULL)
+	return strVar;
 }
 
 /** Read tarball header and store it in memory.
@@ -46,13 +74,33 @@ loadstr(FILE * file)
  * of files stored in the tarball archive (first 4 bytes of the header).
  *
  * On success it returns the starting memory address of an array that stores 
- * the (name,size) pairs read from the tar file. Upon failure, the function returns NULL.
+ * the (name,size) pairs read from the tar file. Upon failure, the function
+ *  returns NULL.
  */
-stHeaderEntry*
-readHeader(FILE * tarFile, int *nFiles)
+stHeaderEntry* readHeader(FILE * tarFile, int *nFiles)
 {
-	// Complete the function
-	return NULL;
+	stHeaderEntry* newHeader = NULL;
+
+	// we read the number of files supposed to be on the header
+	int numFiles = 0;
+	fread(numFiles, sizeof(int), 1, tarFile);
+	
+	// memory reserve based on numFiles and the size of stHeaderEntry
+	newHeader = malloc(sizeof(stHeaderEntry) * numFiles);
+
+	// read the meta-information and stores it on the header
+	// (name of the file, and size of the file)
+	int i = 0;
+	while(i < numFiles){
+		newHeader->name = loadstr(tarFile);
+		fread(&(newHeader->size), sizeof(int), 1, tarFile);
+		i++;
+	}
+
+	// updating the numbre of files, so it can be used outside
+	(*nFiles) = numFiles;
+
+	return newHeader;
 }
 
 /** Creates a tarball archive 
@@ -76,10 +124,11 @@ readHeader(FILE * tarFile, int *nFiles)
  * pairs occupy strlen(name)+1 bytes.
  *
  */
-int
-createTar(int nFiles, char *fileNames[], char tarName[])
+int createTar(int nFiles, char *fileNames[], char tarName[])
 {
 	// Complete the function
+
+
 	return EXIT_FAILURE;
 }
 
@@ -97,9 +146,10 @@ createTar(int nFiles, char *fileNames[], char tarName[])
  * stored in the data section of the tarball.
  *
  */
-int
-extractTar(char tarName[])
+int extractTar(char tarName[])
 {
 	// Complete the function
+
+
 	return EXIT_FAILURE;
 }
