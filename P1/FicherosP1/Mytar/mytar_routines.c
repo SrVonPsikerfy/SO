@@ -24,6 +24,7 @@ int copynFile(FILE * origin, FILE * destination, int nBytes)
 	int c; 
 	while(numBytes < nBytes) {
 		fread(&c, 1, 1, origin);
+
 		if(feof(origin))
 			break;
 		
@@ -87,23 +88,17 @@ stHeaderEntry* readHeader(FILE * tarFile, int *nFiles)
 	stHeaderEntry* newHeader = NULL;
 
 	// we read the number of files supposed to be on the header
-	int numFiles = 0;
-	fread(&numFiles, sizeof(int), 1, tarFile);
+	fread(&nFiles, sizeof(int), 1, tarFile);
 	
 	// memory reserve based on numFiles and the size of stHeaderEntry
-	newHeader = malloc(sizeof(stHeaderEntry) * numFiles);
+	newHeader = malloc(sizeof(stHeaderEntry) * (*nFiles));
 
 	// read the meta-information and stores it on the header
 	// (name of the file, and size of the file)
-	int i = 0;
-	while(i < numFiles){
+	for (int i = 0; i < (*nFiles); i++) {
 		newHeader[i].name = loadstr(tarFile);
 		fread(&(newHeader[i].size), sizeof(int), 1, tarFile);
-		i++;
 	}
-
-	// updating the numbre of files, so it can be used outside
-	(*nFiles) = numFiles;
 
 	return newHeader;
 }
@@ -141,7 +136,7 @@ int createTar(int nFiles, char *fileNames[], char tarName[]) {
 
 	//Nombre archivo | Modo Escritura
 	//No se ha podido abrir el archivo
-	if((tarFile = fopen (tarName, "wx")) == NULL){
+	if((tarFile = fopen (tarName, "w")) == NULL){
 		fprintf(stderr, "The mtar file  %s can't be open.", tarName);
 		perror(NULL);
 		return EXIT_FAILURE;
@@ -166,14 +161,14 @@ int createTar(int nFiles, char *fileNames[], char tarName[]) {
 		//Se usa 1 ya que el byte \0 no cuenta a la hora de llamar strlen
 		int namesize = strlen(fileNames[i]) + 1;
 		//Reserva en memoria namesize bytes, y luego castea esa direccion de Mem devuelta a un char*
-		header[i].name = (char*) malloc(namesize);
+		header[i].name = (char*) malloc(namesize); // NI ZORRA
 
 		if(header[i].name == NULL){
 			perror("ERROR: Couldn't create tarBall");
 			fclose(tarFile);
 			remove(tarName);
 
-			for (int j = 0; j < i; j++)
+			for (int j = 0; j < i; j++) // NI ZORRA
 				free(header[j].name); //Ya que hemos reservado memoria de esa string
 
 			free(header); //Liberamos memoria de la propia estructura 
@@ -202,7 +197,7 @@ int createTar(int nFiles, char *fileNames[], char tarName[]) {
 			remove(tarName);
 
 			//Tenemos que liberar la memoria liberada
-			for (int j = 0; j < i; j++)
+			for (int j = 0; j < i; j++) // NI ZORRA
 				free(header[j].name); //Ya que hemos reservado mememoria de esa string
 
 			free(header); //Liberamos memoria de la propia estructura 
@@ -272,7 +267,7 @@ int extractTar(char tarName[])
 		FILE* extractedFile;
 
 		if ((extractedFile = fopen(header[i].name, "w")) == NULL) {
-			fprintf(stderr, "The file %s can't be open.", header->name);
+			fprintf(stderr, "The file %s couldn't be created.", header->name);
 			perror(NULL);
 			return EXIT_FAILURE;
 		}

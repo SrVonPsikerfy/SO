@@ -25,11 +25,7 @@ head "/etc/passwd" > file2.txt # -n [number] limits reading to that specific num
 touch "file3.dat"
 head -c 1024 "/dev/urandom" > file3.dat
 
-touch "file4.txt"
-echo "Bastante sencillo SO!" > file4.txt
-
-
-../mytar -cf "filetar.mtar" "file1.txt" "file2.txt" "file3.dat" "file4.txt"
+../mytar -cf "filetar.mtar" "file1.txt" "file2.txt" "file3.dat"
 
 mkdir "./out"
 cp "filetar.mtar" "./out"
@@ -40,6 +36,18 @@ cd "./out"
 diff -q "file1.txt" "../file1.txt" 1>/dev/null # dev null erases output
 if [ $? != "0" ]; then # exit status of the last executed command [in this case, diff]
   echo "file1.txt was not extracted correctly"
+  exit 1
+fi
+
+diff -q "file2.txt" "../file2.txt" 1>/dev/null # dev null erases output
+if [ $? != "0" ]; then # exit status of the last executed command [in this case, diff]
+  echo "file2.txt was not extracted correctly"
+  exit 1
+fi
+
+diff -q "file3.dat" "../file3.dat" 1>/dev/null # dev null erases output
+if [ $? != "0" ]; then # exit status of the last executed command [in this case, diff]
+  echo "file3.dat was not extracted correctly"
   exit 1
 fi
 
