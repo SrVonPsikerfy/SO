@@ -164,7 +164,7 @@ int createTar(int nFiles, char *fileNames[], char tarName[]) {
 	//Calculo del tamaño del tarball y copiamos el nombre de cada fichero en el array de strings del Header
 	for (int i = 0; i < nFiles; i++){
 		//Se usa 1 ya que el byte \0 no cuenta a la hora de llamar strlen
-		int namesize = strlen(fileNames[i]);
+		int namesize = strlen(fileNames[i]) + 1;
 		//Reserva en memoria namesize bytes, y luego castea esa direccion de Mem devuelta a un char*
 		header[i].name = (char*) malloc(namesize);
 
@@ -188,7 +188,7 @@ int createTar(int nFiles, char *fileNames[], char tarName[]) {
 	}
 
 	//Nos vamos a desplazar el tamaño del Header para empezar a escribir los datos. Usamos el fseek
-	fseek(tarFile, headerSize + 6, SEEK_SET); //SEEK_SET It moves file pointer position to a given position from the beginning of the file.
+	fseek(tarFile, headerSize, SEEK_SET); //SEEK_SET It moves file pointer position to a given position from the beginning of the file.
 
 	FILE* inputFile;
 	for(int i = 0; i < nFiles; i++) {
