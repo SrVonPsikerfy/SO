@@ -25,7 +25,10 @@ head "/etc/passwd" > file2.txt # -n [number] limits reading to that specific num
 touch "file3.dat"
 head -c 1024 "/dev/urandom" > file3.dat
 
-../mytar -cf "filetar.mtar" "file1.txt" "file2.txt" "file3.dat" 
+touch "file4.txt"
+echo "Ay me cago en todo" > file4.txt
+
+../mytar -cf "filetar.mtar" "file1.txt" "file2.txt" "file3.dat" "file4.txt"
 
 mkdir "./out"
 cp "filetar.mtar" "./out"
