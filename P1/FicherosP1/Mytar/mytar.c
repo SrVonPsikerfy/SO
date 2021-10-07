@@ -7,7 +7,6 @@
 char use[]="Usage: tar -c|x -f file_mytar [file1 file2 ...]\n";
 
 int main(int argc, char *argv[]) {
-
   int opt, nExtra, retCode=EXIT_SUCCESS;
   flags flag=NONE;
   char *tarName=NULL;
