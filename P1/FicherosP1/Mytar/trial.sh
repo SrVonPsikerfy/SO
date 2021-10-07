@@ -17,7 +17,7 @@ mkdir "./tmp"
 cd "./tmp"
 
 touch "file1.txt"
-echo "Hello World!" > file1.txt
+echo "Hello World!?" > file1.txt
 
 touch "file2.txt"
 head "/etc/passwd" > file2.txt # -n [number] limits reading to that specific number of lines
