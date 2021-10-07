@@ -17,7 +17,7 @@ mkdir "./tmp"
 cd "./tmp"
 
 touch "file1.txt"
-echo "Hello World!" > file1.txt
+echo "Hello World!?" > file1.txt
 
 touch "file2.txt"
 head "/etc/passwd" > file2.txt # -n [number] limits reading to that specific number of lines
@@ -25,7 +25,8 @@ head "/etc/passwd" > file2.txt # -n [number] limits reading to that specific num
 touch "file3.dat"
 head -c 1024 "/dev/urandom" > file3.dat
 
-../mytar -cf "filetar.mtar" "file1.txt" "file2.txt" "file3.dat" 
+
+../mytar -cf "filetar.mtar" "file1.txt" "file2.txt" "file3.dat"
 
 mkdir "./out"
 cp "filetar.mtar" "./out"

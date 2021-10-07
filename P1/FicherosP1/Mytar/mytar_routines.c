@@ -184,11 +184,11 @@ int createTar(int nFiles, char *fileNames[], char tarName[]) {
 		//En caso de que no haya ningun fallo: Copiamos cada nombre de cada archivo, en el array del Header
 		strcpy(header[i].name, fileNames[i]);
 		//El tamaño de cada string + el tamaño en bytes de un unsigned int
-		headerSize += namesize + sizeof(header->size);
+		headerSize += namesize + sizeof(header[i].size);
 	}
-	
+
 	//Nos vamos a desplazar el tamaño del Header para empezar a escribir los datos. Usamos el fseek
-	fseek(tarFile, headerSize+8, SEEK_SET); //SEEK_SET It moves file pointer position to a given position from the beginning of the file.
+	fseek(tarFile, headerSize + 8, SEEK_SET); //SEEK_SET It moves file pointer position to a given position from the beginning of the file.
 
 	FILE* inputFile;
 	for(int i = 0; i < nFiles; i++) {

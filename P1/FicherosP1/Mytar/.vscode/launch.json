@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/mytar",
-            "args": ["-x" ,"-f", "filetar.mtar", "./tmp/file1.txt","./tmp/file2.txt", "./tmp/file3.dat"],
+            "args": ["-x" ,"-f", "filetar.mtar", "./tmp/file0.txt","./tmp/file2.txt", "./tmp/file3.dat"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
