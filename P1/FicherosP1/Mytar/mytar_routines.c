@@ -90,7 +90,7 @@ stHeaderEntry* readHeader(FILE * tarFile, int *nFiles)
 	// we read the number of files supposed to be on the header
 	fread(&nFiles, sizeof(int), 1, tarFile);
 	
-	// memory reserve based on numFiles and the size of stHeaderEntry
+	// memory reserved based on numFiles and the size of stHeaderEntry
 	newHeader = malloc(sizeof(stHeaderEntry) * (*nFiles));
 
 	// read the meta-information and stores it on the header
@@ -253,22 +253,32 @@ int createTar(int nFiles, char *fileNames[], char tarName[]) {
 int extractTar(char tarName[])
 {
 	FILE *tarFile;
-
+	// open the file, if it doesn't work, we stop and send an error message
 	if ((tarFile = fopen(tarName, "r")) == NULL) {
 		fprintf(stderr, "The mtar file %s can't be open.", tarName);
 		perror(NULL);
 		return EXIT_FAILURE;
 	}
 
+	// obtain the header block (array of names and sizes of each compressed file)
 	int nFiles;
 	stHeaderEntry* header = readHeader(tarFile, &nFiles);
 
+	// for each file compressed, we extract its data back into its original file
 	for (int i = 0; i < nFiles; i++) {
 		FILE* extractedFile;
 
+		// if for some reason the file isn't created properly, we stop and free the already 
+		// reserved and occupied space
 		if ((extractedFile = fopen(header[i].name, "w")) == NULL) {
 			fprintf(stderr, "The file %s couldn't be created.", header->name);
 			perror(NULL);
+
+			for (int j = 0; j < i; j++)
+				free(header[j].name);
+
+			free(header);
+
 			return EXIT_FAILURE;
 		}
 
@@ -276,6 +286,15 @@ int extractTar(char tarName[])
 
 		fclose(extractedFile);
 	}
+
+	// success message
+	fprintf(stdout,"Files were succesfully extracted!\n");
+
+	// free up the storage reserved for the names and the headers
+	for (int j = 0; j < nFiles; j++)
+		free(header[j].name);
+
+	free(header);
 
 	return EXIT_SUCCESS;
 }
