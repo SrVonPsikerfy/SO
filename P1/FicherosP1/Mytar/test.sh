@@ -47,6 +47,7 @@ fi
 
 diff -q "file3.dat" "../file3.dat" 1>/dev/null # dev null erases output
 if [ $? != "0" ]; then # exit status of the last executed command [in this case, diff]
+  cd ../../
   echo "file3.dat was not extracted correctly."
   exit 1
 fi
@@ -57,5 +58,6 @@ fi
 # if [ ! "$DIFF1" ] && [ ! "$DIFF2" ] && [ ! "$DIFF3" ]; then
 #   echo "Something went wrong, extracted files don't match up between them."
 
+cd ../../
 echo "Correct!"
 exit 0

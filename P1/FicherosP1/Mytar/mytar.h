@@ -3,7 +3,7 @@
 
 #include <limits.h>
 
-typedef enum{
+typedef enum {
   NONE,
   ERROR,
   CREATE,
