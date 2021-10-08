@@ -8,10 +8,9 @@ int main(int argc,char* argv[])
 
   printf("Hello ...%d\n", VAR);
 
-  if( argc >= 1 )
-    for( i=0; i < argc; i++)
-        printf("Argument #%d: %s\n",i,argv[i]);	
+  if (argc >= 1)
+    for(i = 0; i < argc; i++)
+        printf("Argument #%d: %s\n", i, argv[i]);	
 
   exit(0);
 }
-

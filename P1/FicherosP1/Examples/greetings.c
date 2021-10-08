@@ -7,7 +7,8 @@ int main(void) {
     if (scanf("%s", name) != 1) {
             printf("Error/EOF\n");
             return 1;
-    } else {
+    } 
+    else {
             printf("Hi %s!!\n", name);
             return 0;
     }

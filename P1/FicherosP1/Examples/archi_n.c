@@ -7,4 +7,3 @@ int main(void)
 	printf("Hello ...%d\n", VAR);
 	exit(0);
 }
-
