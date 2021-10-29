@@ -31,7 +31,7 @@ int resizeNode(uint64_t idxNode, size_t newSize)
     /// File size increases
     if(diff > 0) {
 
-        /// Delete the extra conent of the last block if it exists and is not full
+        /// Delete the extra content of the last block if it exists and is not full
         if(node->numBlocks && node->fileSize % BLOCK_SIZE_BYTES) {
             int currentBlock = node->blocks[node->numBlocks - 1];
 
@@ -178,7 +178,7 @@ static int my_getattr(const char *path, struct stat *stbuf)
         return 0;
     }
 
-    /// Rest of the world
+    /// Everything else
     if((idxDir = findFileByName(&myFileSystem, (char *)path + 1)) != -1) {
         node = myFileSystem.nodes[myFileSystem.directory.files[idxDir].nodeIdx];
         stbuf->st_size = node->fileSize;
@@ -512,11 +512,10 @@ struct fuse_operations myFS_operations = {
     .getattr	= my_getattr,					// Obtain attributes from a file
     .readdir	= my_readdir,					// Read directory entries
     .truncate	= my_truncate,					// Modify the size of a file
-    .open		= my_open,						// Oeen a file
+    .open		= my_open,						// Open a file
     .read		= my_read,						// Reads data from a file already opened
     .write		= my_write,						// Write data into a file already opened
     .release	= my_release,					// Close an opened file
     .mknod		= my_mknod,						// Create a new file
 	.unlink     = my_unlink,                    // Removes a file
 };
-
