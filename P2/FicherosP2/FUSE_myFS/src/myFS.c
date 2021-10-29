@@ -123,47 +123,46 @@ int myMkfs(MyFileSystem *myFileSystem, int diskSize, char *backupFileName)
     // Some minimal checks:
     assert(sizeof(SuperBlockStruct) <= BLOCK_SIZE_BYTES);
     assert(sizeof(DirectoryStruct) <= BLOCK_SIZE_BYTES);
+
     int numBlocks = diskSize / BLOCK_SIZE_BYTES;
     int minNumBlocks = 3 + MAX_BLOCKS_WITH_NODES + 1;
     int maxNumBlocks = NUM_BITS;
-    if(numBlocks < minNumBlocks) {
+
+    if (numBlocks < minNumBlocks)
         return -1;
-    }
-    if(numBlocks >= maxNumBlocks) {
+    if (numBlocks >= maxNumBlocks)
         return -2;
-    }
 
     /// BITMAP
     // Initialization
     int i;
-    for(i = 0; i < NUM_BITS; i++) {
+    for(i = 0; i < NUM_BITS; i++) 
         myFileSystem->bitMap[i] = 0;
-    }
 
     // First three blocks will be superblock, bitmap and directory
     myFileSystem->bitMap[BITMAP_IDX] = 1;
     myFileSystem->bitMap[SUPERBLOCK_IDX] = 1;
     myFileSystem->bitMap[DIRECTORY_IDX] = 1;
+
     // Next MAX_BLOCKS_WITH_NODES will contain inodes
-    for(i = 3; i < 3 + MAX_BLOCKS_WITH_NODES; i++) {
+    for(i = 3; i < 3 + MAX_BLOCKS_WITH_NODES; i++) 
         myFileSystem->bitMap[i] = 1;
-    }
+
     updateBitmap(myFileSystem);
 
     /// DIRECTORY
     // Initialization
     myFileSystem->directory.numFiles = 0;
-    for(i = 0; i < MAX_FILES_PER_DIRECTORY; i++) {
+    for(i = 0; i < MAX_FILES_PER_DIRECTORY; i++) 
         myFileSystem->directory.files[i].freeFile = 1;
-    }
+
     updateDirectory(myFileSystem);
 
     /// INODES
     NodeStruct currentNode;
     currentNode.freeNode = 1;
-    for(i = 0; i < MAX_NODES; i++) {
+    for(i = 0; i < MAX_NODES; i++)
         updateNode(myFileSystem, i, &currentNode);
-    }
 
     /// SUPERBLOCK
     initializeSuperBlock(myFileSystem, diskSize);
@@ -296,31 +295,6 @@ int updateSuperBlock(MyFileSystem *myFileSystem)
     return 0;
 }
 
-/* Code for the optional part of the lab assignment */
-
-int readBitmap(MyFileSystem *myFileSystem)
-{
-    return -1;
-}
-
-
-
-int readDirectory(MyFileSystem* myFileSystem)
-{
-    return -1;
-}
-
-
-int readSuperblock(MyFileSystem* myFileSystem)
-{
-    return -1;
-}
-
-int readInodes(MyFileSystem* myFileSystem)
-{
-    return -1;
-}
-
 int myMount(MyFileSystem *myFileSystem, char *backupFileName)
 {
     if ((myFileSystem->fdVirtualDisk = open(backupFileName, O_RDWR))==-1) {
@@ -355,14 +329,14 @@ int myMount(MyFileSystem *myFileSystem, char *backupFileName)
     printf("%d blocks for inodes (%u B/inode, %u inodes)\n", MAX_BLOCKS_WITH_NODES, (unsigned int)sizeof(NodeStruct), (unsigned int)MAX_NODES);
     printf("%d blocks for data (%d B)\n", myFileSystem->superBlock.numOfFreeBlocks, BLOCK_SIZE_BYTES * myFileSystem->superBlock.numOfFreeBlocks);
     printf("Volume mounted successfully!\n");
+
     return 0;
 }
 
 int readBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer)
 {
-
     if(blockNumber < 0 || blockNumber >= myFileSystem->superBlock.diskSizeInBlocks) {
-        fprintf(stderr,"Firts bocks to be read must be between 0 and %d\n", myFileSystem->superBlock.diskSizeInBlocks-1);
+        fprintf(stderr,"First blocks to be read must be between 0 and %d\n", myFileSystem->superBlock.diskSizeInBlocks-1);
         return -1;
     }
 
@@ -370,17 +344,18 @@ int readBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer)
         perror("Failed lseek in readBlock()");
         return -1;
     }
+
     if( read(myFileSystem->fdVirtualDisk, buffer, BLOCK_SIZE_BYTES) != BLOCK_SIZE_BYTES ) {
         perror("Failed read in readBlock()");
     }
+
     return 0;
 }
 
 int writeBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer)
 {
-
     if(blockNumber < 0 || blockNumber >= myFileSystem->superBlock.diskSizeInBlocks) {
-        fprintf(stderr,"Firts bocks to be read must be between 0 and %d\n", myFileSystem->superBlock.diskSizeInBlocks-1);
+        fprintf(stderr,"First blocks to be read must be between 0 and %d\n", myFileSystem->superBlock.diskSizeInBlocks-1);
         return -1;
     }
 
@@ -392,4 +367,25 @@ int writeBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer)
         perror("Write failed in writeBlock()");
     }
     return 0;
+}
+
+/* Code for the optional part of the lab assignment */
+int readBitmap(MyFileSystem *myFileSystem)
+{
+    return -1;
+}
+
+int readDirectory(MyFileSystem* myFileSystem)
+{
+    return -1;
+}
+
+int readSuperblock(MyFileSystem* myFileSystem)
+{
+    return -1;
+}
+
+int readInodes(MyFileSystem* myFileSystem)
+{
+    return -1;
 }

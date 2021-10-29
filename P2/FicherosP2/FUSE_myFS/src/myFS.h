@@ -1,29 +1,32 @@
 #ifndef _MYFS_H_
 #define _MYFS_H_
 
+#include <assert.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <time.h>
-#include <fcntl.h>
 #include <unistd.h>
-#include <assert.h>
 
 #define false 0
 #define true 1
 
 #define BIT unsigned
+#define DISK_LBA int
+#define BOOLEAN int
+
 #define BLOCK_SIZE_BYTES 4096
-#define NUM_BITS (BLOCK_SIZE_BYTES/sizeof(BIT))
 #define MAX_BLOCKS_WITH_NODES 5
 #define MAX_BLOCKS_PER_FILE 100
 #define MAX_FILES_PER_DIRECTORY 100
 #define MAX_LEN_FILE_NAME 15
-#define DISK_LBA int
-#define BOOLEAN int
+
+#define NUM_BITS (BLOCK_SIZE_BYTES/sizeof(BIT))
 
 #define SUPERBLOCK_IDX 0
 #define BITMAP_IDX 1
 #define DIRECTORY_IDX 2
 #define NODES_IDX 3
+
 
 // STRUCTS
 typedef struct FileStructure {
@@ -63,7 +66,7 @@ typedef struct MyFileSystemStructure {
     BIT bitMap[NUM_BITS];            	// Bit map
     DirectoryStruct directory;     		// Root directory
     NodeStruct* nodes[MAX_NODES];		// Array of inode pointers
-    int numFreeNodes;                  // # of available inodes
+    int numFreeNodes;                   // # of available inodes
 } MyFileSystem;
 
 
@@ -153,7 +156,6 @@ int myMkfs(MyFileSystem *myFileSystem, int diskSize, char *backupFileName);
  **/
 int myMount(MyFileSystem *myFileSystem, char *backupFileName);
 
-
 /**
  * @brief Returns the number of free blocks in the FS, checking the bitmap
  *
@@ -216,7 +218,6 @@ int updateNode(MyFileSystem *myFileSystem, int nodeNum, NodeStruct *node);
  **/
 int updateSuperBlock(MyFileSystem *myFileSystem);
 
-
 /**
  * @brief Reads numBlock from storage into buffer
  *
@@ -227,7 +228,6 @@ int updateSuperBlock(MyFileSystem *myFileSystem);
  **/
 int readBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer);
 
-
 /**
  * @brief Writes buffer data into numBlock storage block
  *
@@ -237,6 +237,5 @@ int readBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer);
  * @return 0 on success and -1 on error
  **/
 int writeBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer);
-
 
 #endif
