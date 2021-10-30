@@ -310,9 +310,48 @@ static int my_open(const char *path, struct fuse_file_info *fi)
  **/
 static int my_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
 {
-	//COMPLETAR
+	fprintf(stderr, "--->>>my_read: path %s, size %zu, offset %jd, fh %"PRIu64"\n", path, size, (intmax_t)offset, fi->fh);
 
-	return 0;
+    // auxiliar buffer just in case there's a problem during reading, so the original buffer isn't affected
+    char auxBuffer[BLOCK_SIZE_BYTES];	
+
+    // number of bytes read
+	int numBytesRead = 0;
+    // file i-Node to read the information related to that file
+	NodeStruct *iNode = myFileSystem.nodes[fi->fh];	
+
+    // if the offset is bigger than the stored data from the iNode, it goes outside the file
+    if (offset >= BLOCK_SIZE_BYTES * iNode->numBlocks)
+        return -1;
+
+	// reading cycle
+	while (numBytesRead < size) {		
+        // data block to read fully (offset / blockSize says the exact block to read)
+		int currentBlock = node->blocks[offset / BLOCK_SIZE_BYTES];
+        // starting point to read the block, depends on the offset (should only be different from the 
+        // beginning of the block in the first iteration)
+        int bgReadBlock = offset % BLOCK_SIZE_BYTES;
+
+        // read the whole block. If there's a problem while reading it, exit code
+        if (readBlock(&myFileSystem, currentBlock, &auxBuffer) == -1) {
+            fprintf(stderr, "Error reading block %d in my_read\n", currentBlock);
+            return -1;
+        }
+
+        // copy the necessary info needed from the auxiliar buffer to the actual buffer.
+
+        // stop putting info on the buffer either if the end of the block has been reached, or 
+        // the required bytes to read have been obtained
+        for (int i = bgReadBlock; (i < BLOCK_SIZE_BYTES) && (numBytesRead < size); i++) {
+            // we copy the data on the buffer using the offset, and increment said offset by 1
+            // for the next byte to read
+            buf[offset++] = auxBuffer[i];
+            numBytesRead++;
+        }
+    }
+    
+    // return the number of bytes read (may be different to size if we reached the end of the file)
+    return numBytesRead;
 }
 
 /**
@@ -502,10 +541,42 @@ static int my_truncate(const char *path, off_t size)
  **/
 static int my_unlink(const char *path)
 {
-	// quitar el fprintf y COMPLETAR
-	fprintf(stderr, "No implementada!!\n");
+    fprintf(stderr, "--->>>my_unlink: path %s\n", path);
 
-	return -1;
+    // find the soon-to-be-deleted file
+	int fileIdx = findFileByName(&myFileSystem, path);
+
+    // if it doesn't exist, return -1
+    if (fileIdx == -1)
+        return -1;
+
+    // obtain the i-node linked to the fil
+    int iNodeIndex = myFileSystem.directory.files[fileIdx].nodeIdx;
+
+    // update the myFS structure
+    myFileSystem.directory.numFiles--;                                          // there's one less file in the directory
+
+    myFileSystem.directory.files[fileIdx].freeFile = true;                      // the file now it's free to use
+    myFileSystem.directory.files[fileIdx].nodeIdx = -1;                         // no i-node linked to the file
+    myFileSystem.directory.files[fileIdx].fileName = NULL;                      // no name for the file
+
+    myFileSystem.numFreeNodes++;                                                // there's one more i-node available (free)
+    myFileSystem.nodes[iNodeIndex]->freeNode = true;                            // the i-node linked to the file it's free to use
+
+    // resizes the data blocks linked to the i-node to 0, updating all the necessary info
+    // of the myFS in the process (superblock, bitmap, node data, etc.)
+    if (resizeNode(iNodeIndex, 0) != 0)                                         
+        return -1; // if the resize fails, exit code
+
+    // update the data on the backup file [superblock, bitmap and node data updated already on resizeNode()]
+    if (updateDirectory(&myFileSystem) == -1)
+        return -1;
+
+    // we free the space from the i-node
+    free(myFileSystem.nodes[iNodeIndex]);
+    myFileSystem.nodes[iNodeIndex] = NULL;
+
+    return 0;
 }
 
 struct fuse_operations myFS_operations = {
