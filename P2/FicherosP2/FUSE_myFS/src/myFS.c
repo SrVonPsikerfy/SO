@@ -19,7 +19,7 @@ void copyNode(NodeStruct *dest, NodeStruct *src)
         dest->blocks[i] = src->blocks[i];
 }
 
-int findFileByName(MyFileSystem *myFileSystem, char *fileName)
+int findFileByName(MyFileSystem *myFileSystem, const char *fileName)
 {
     int i;
 
@@ -295,6 +295,43 @@ int updateSuperBlock(MyFileSystem *myFileSystem)
     return 0;
 }
 
+int readBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer)
+{
+    if(blockNumber < 0 || blockNumber >= myFileSystem->superBlock.diskSizeInBlocks) {
+        fprintf(stderr,"First blocks to be read must be between 0 and %d\n", myFileSystem->superBlock.diskSizeInBlocks-1);
+        return -1;
+    }
+
+    if( lseek(myFileSystem->fdVirtualDisk, blockNumber*BLOCK_SIZE_BYTES, SEEK_SET) == (off_t)-1 ) {
+        perror("Failed lseek in readBlock()");
+        return -1;
+    }
+
+    if( read(myFileSystem->fdVirtualDisk, buffer, BLOCK_SIZE_BYTES) != BLOCK_SIZE_BYTES ) {
+        perror("Failed read in readBlock()");
+    }
+
+    return 0;
+}
+
+int writeBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer)
+{
+    if(blockNumber < 0 || blockNumber >= myFileSystem->superBlock.diskSizeInBlocks) {
+        fprintf(stderr,"First blocks to be read must be between 0 and %d\n", myFileSystem->superBlock.diskSizeInBlocks-1);
+        return -1;
+    }
+
+    if( lseek(myFileSystem->fdVirtualDisk, blockNumber*BLOCK_SIZE_BYTES, SEEK_SET) == (off_t)-1 ) {
+        perror("Lseek failed in writeBlock()");
+        return -1;
+    }
+    if( write(myFileSystem->fdVirtualDisk, buffer, BLOCK_SIZE_BYTES) != BLOCK_SIZE_BYTES ) {
+        perror("Write failed in writeBlock()");
+    }
+    return 0;
+}
+
+/* Code for the optional part of the lab assignment */
 int myMount(MyFileSystem *myFileSystem, char *backupFileName)
 {
     if ((myFileSystem->fdVirtualDisk = open(backupFileName, O_RDWR))==-1) {
@@ -333,43 +370,6 @@ int myMount(MyFileSystem *myFileSystem, char *backupFileName)
     return 0;
 }
 
-int readBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer)
-{
-    if(blockNumber < 0 || blockNumber >= myFileSystem->superBlock.diskSizeInBlocks) {
-        fprintf(stderr,"First blocks to be read must be between 0 and %d\n", myFileSystem->superBlock.diskSizeInBlocks-1);
-        return -1;
-    }
-
-    if( lseek(myFileSystem->fdVirtualDisk, blockNumber*BLOCK_SIZE_BYTES, SEEK_SET) == (off_t)-1 ) {
-        perror("Failed lseek in readBlock()");
-        return -1;
-    }
-
-    if( read(myFileSystem->fdVirtualDisk, buffer, BLOCK_SIZE_BYTES) != BLOCK_SIZE_BYTES ) {
-        perror("Failed read in readBlock()");
-    }
-
-    return 0;
-}
-
-int writeBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer)
-{
-    if(blockNumber < 0 || blockNumber >= myFileSystem->superBlock.diskSizeInBlocks) {
-        fprintf(stderr,"First blocks to be read must be between 0 and %d\n", myFileSystem->superBlock.diskSizeInBlocks-1);
-        return -1;
-    }
-
-    if( lseek(myFileSystem->fdVirtualDisk, blockNumber*BLOCK_SIZE_BYTES, SEEK_SET) == (off_t)-1 ) {
-        perror("Lseek failed in writeBlock()");
-        return -1;
-    }
-    if( write(myFileSystem->fdVirtualDisk, buffer, BLOCK_SIZE_BYTES) != BLOCK_SIZE_BYTES ) {
-        perror("Write failed in writeBlock()");
-    }
-    return 0;
-}
-
-/* Code for the optional part of the lab assignment */
 int readBitmap(MyFileSystem *myFileSystem)
 {
     return -1;

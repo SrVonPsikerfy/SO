@@ -86,7 +86,7 @@ void copyNode(NodeStruct *dest, NodeStruct *src);
  * @param fileName name of the file we are looking for
  * @return index of the file in the array of files, -1 if the file is not found
  **/
-int findFileByName(MyFileSystem *myFileSystem, char *fileName);
+int findFileByName(MyFileSystem *myFileSystem, const char *fileName);
 
 /**
  * @brief This function looks for a free entry in the array of files
@@ -146,15 +146,6 @@ void myFree(MyFileSystem *myFileSystem);
  * @return 0 on success and <0 on error
  **/
 int myMkfs(MyFileSystem *myFileSystem, int diskSize, char *backupFileName);
-
-/**
- * @brief Mounts the current disk.  (Optional part of the lab assignment)
- *
- * @param myFileSystem pointer to the FS
- * @param backupFileName Name of the file that stores the FS
- * @return 0 on success and <0 on error
- **/
-int myMount(MyFileSystem *myFileSystem, char *backupFileName);
 
 /**
  * @brief Returns the number of free blocks in the FS, checking the bitmap
@@ -237,5 +228,23 @@ int readBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer);
  * @return 0 on success and -1 on error
  **/
 int writeBlock(MyFileSystem *myFileSystem, DISK_LBA blockNumber, void *buffer);
+
+//  (Optional part of the lab assignment)
+/**
+ * @brief Mounts the current disk. 
+ *
+ * @param myFileSystem pointer to the FS
+ * @param backupFileName Name of the file that stores the FS
+ * @return 0 on success and <0 on error
+ **/
+int myMount(MyFileSystem *myFileSystem, char *backupFileName);
+
+int readBitmap(MyFileSystem *myFileSystem);
+
+int readDirectory(MyFileSystem* myFileSystem);
+
+int readSuperblock(MyFileSystem* myFileSystem);
+
+int readInodes(MyFileSystem* myFileSystem);
 
 #endif

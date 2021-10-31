@@ -80,7 +80,31 @@ else
   echo "myFS.h was succesfully truncated"
 fi
 
+# Optional test for my_read and my_unlink
+./my-fsck "virtual-disk" 1>/dev/null
+
+cp "./tempCopyFiles/short.txt" "./mount-point"
+cp "./tempCopyFiles/long.txt" "./mount-point"
+
+cat "./mount-point/long.txt" > "./mount-point/outputShort.txt"
+diff -q "./mount-point/long.txt" "./mount-point/outputShort.txt" 1>/dev/null
+if [ $? != "0" ]; then
+  echo "long.txt error while reading it"
+  exit -1
+else
+  echo "long.txt succesfully read"
+fi
+
+rm "./mount-point/short.txt"
+
+if [ -f "./mount-point/short.txt" ]; then
+  echo "short.txt was not deleted properly"
+  exit -1
+ else
+  echo "short.txt deleted"
+fi
+
 # deletes the FS
-# fusermount -u mount-point
+fusermount -u mount-point
 
 exit 0

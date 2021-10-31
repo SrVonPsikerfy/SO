@@ -321,13 +321,14 @@ static int my_read(const char *path, char *buf, size_t size, off_t offset, struc
 	NodeStruct *iNode = myFileSystem.nodes[fi->fh];	
 
     // if the offset is bigger than the stored data from the iNode, it goes outside the file
-    if (offset >= BLOCK_SIZE_BYTES * iNode->numBlocks)
+    if (offset >= BLOCK_SIZE_BYTES * iNode->numBlocks) {
         return -1;
+    }
 
 	// reading cycle
 	while (numBytesRead < size) {		
         // data block to read fully (offset / blockSize says the exact block to read)
-		int currentBlock = node->blocks[offset / BLOCK_SIZE_BYTES];
+		int currentBlock = iNode->blocks[offset / BLOCK_SIZE_BYTES];
         // starting point to read the block, depends on the offset (should only be different from the 
         // beginning of the block in the first iteration)
         int bgReadBlock = offset % BLOCK_SIZE_BYTES;
@@ -558,7 +559,6 @@ static int my_unlink(const char *path)
 
     myFileSystem.directory.files[fileIdx].freeFile = true;                      // the file now it's free to use
     myFileSystem.directory.files[fileIdx].nodeIdx = -1;                         // no i-node linked to the file
-    myFileSystem.directory.files[fileIdx].fileName = NULL;                      // no name for the file
 
     myFileSystem.numFreeNodes++;                                                // there's one more i-node available (free)
     myFileSystem.nodes[iNodeIndex]->freeNode = true;                            // the i-node linked to the file it's free to use
