@@ -9,7 +9,7 @@ int my_system(const char* command) {
 	pid_t child_pid;
 	int child;
 
-	child_pid = fork());
+	child_pid = fork();
 	if (child_pid == 0) { //child
 		// NULL defines that there are no more args on the execl
 		execl("/bin/bash", "/bin/bash", "-c", command, NULL); 
