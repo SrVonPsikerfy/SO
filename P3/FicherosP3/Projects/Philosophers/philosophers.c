@@ -7,7 +7,6 @@
 
 #define NUM_PHILOSOPHERS 5
 
-enum STATES { HUNGRY, EATING, RESTING };
 
 int philoStates[NUM_PHILOSOPHERS];
 
@@ -18,6 +17,12 @@ void init() {
     int i;
     for(i = 0; i < NUM_PHILOSOPHERS; i++)
         pthread_mutex_init(&forks[i], NULL);
+}
+
+void destroy(){
+    int i;
+    for(i = 0; i< NUM_PHILOSOPHERS; i++)
+        pthread_mutex_destroy(&forks[i]);
 }
 
 void think(int i) {
@@ -46,30 +51,25 @@ void* philosopher(void* i) {
     int right = nPhilosopher;
     int left = (nPhilosopher - 1 == -1) ? NUM_PHILOSOPHERS - 1 : (nPhilosopher - 1);
     while(true) {
-        
         think(nPhilosopher);
-        
         /// TRY TO GRAB BOTH FORKS (right and left)
-        // pthread_mutex_lock(&forks[nPhilosopher]);
-        //We verify if we're HUNGRY since later we need to put back the forks on the table
+        //We try to grab the right one, if its already grabbed, the thread waits
+        pthread_mutex_lock(&forks[right]);
 
-        if(!pthread_mutex_trylock(&forks[right]) && !pthread_mutex_trylock(&forks[left]) ){
-            
+        //We try to grab the left one, locking its mutex. If succeded, returns 0 and we eat. Else, is already locked then we put back the right one 
+        if(pthread_mutex_trylock(&forks[left])){  // is already locked
+            pthread_mutex_unlock(&forks[right]);
+            continue; //(?)
         }
-
-
-
-
+        //Is 0 
         eat(nPhilosopher);
-        
+
         // PUT FORKS BACK ON THE TABLE
+        pthread_mutex_unlock(&forks[left]);
+        pthread_mutex_unlock(&forks[right]);
         
         toSleep(nPhilosopher);
-        // if(philoStates[nPhilosopher] == HUNGRY && philoStates[right] != EATING && philoStates[left] != EATING){
-        //    philoStates[nPhilosopher] = EATING;
-        // }
    }
-
 }
 
 int main()
@@ -80,6 +80,8 @@ int main()
         pthread_create(&philosophers[i], NULL, philosopher, (void*)i);
     
     for(i = 0; i < NUM_PHILOSOPHERS; i++)
-        pthread_join(philosophers[i],NULL);
+        pthread_join(philosophers[i],NULL); // we wait each thread to terminate
+
+    destroy();
     return 0;
 } 
