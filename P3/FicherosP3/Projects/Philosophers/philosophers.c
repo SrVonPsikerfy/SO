@@ -54,13 +54,17 @@ void* philosopher(void* i) {
         think(nPhilosopher);
         /// TRY TO GRAB BOTH FORKS (right and left)
         //We try to grab the right one, if its already grabbed, the thread waits
-        pthread_mutex_lock(&forks[right]);
-
-        //We try to grab the left one, locking its mutex. If succeded, returns 0 and we eat. Else, is already locked then we put back the right one 
-        if(pthread_mutex_trylock(&forks[left])){  // is already locked
-            pthread_mutex_unlock(&forks[right]);
-            continue; //(?)
-        }
+        
+        do {
+            pthread_mutex_lock(&forks[right]);
+            //We continously try to grab the left one, locking its mutex. If succeded, returns 0 and we eat. Else, is already locked then we put back the right one 
+            if(pthread_mutex_trylock(&forks[left])){  // is already locked
+                pthread_mutex_unlock(&forks[right]);
+                sleep(1);
+                continue; //retry
+            }
+            break;
+        } while (1);
         //Is 0 
         eat(nPhilosopher);
 
