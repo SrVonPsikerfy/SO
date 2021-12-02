@@ -29,7 +29,7 @@ void driveToNextStop()
 {
 	/* Establecer un Retardo que simule el trayecto y actualizar numero de parada */
 	printf("Bus driving to the next stop... \n");
-	sleep(random() % 10);
+	sleep(random() % 4);
 	currStop = currStop + 1 == NUM_STOPS ? 0 : currStop + 1; // goes to the next stop
 }
 
@@ -38,6 +38,8 @@ void busOnStop()
 	/* Ajustar el estado y bloquear al autobús hasta que no haya pasajeros que
 	quieran bajar y/o subir la parada actual. Después se pone en marcha */
 	pthread_mutex_lock(&m);
+
+	printf("Bus has stopped on the stop %d... \n", currStop);
 
 	state = ON_STOP;
 
@@ -68,10 +70,14 @@ void goOnTheBus(int id_user, int og)
 	proporcionar información de depuración */
 	pthread_mutex_lock(&m);
 											      //currStop == og && 
-	while (state != ON_STOP || currStop != og ||  numPassengers == MAX_USERS)
+	while (state != ON_STOP || currStop != og ||  numPassengers == MAX_USERS){
+		printf("User %d waiting... \n", id_user);
 		pthread_cond_wait(&users, &m);
+	}
 
-	++waitingToGoIn[og];
+	--waitingToGoIn[og];
+
+	printf("User %d got on the bus on the stop %d... \n", id_user, og);
 
 	pthread_cond_signal(&bus);
 	pthread_mutex_unlock(&m);
@@ -84,10 +90,14 @@ void goOutTheBus(int id_user, int dst)
 	proporcionar información de depuración */
 	pthread_mutex_lock(&m);
 
-	while (state != ON_STOP || currStop != dst)
+	while (state != ON_STOP || currStop != dst){
+		printf("User %d waiting... \n", id_user);
 		pthread_cond_wait(&users, &m);
+	}
 
 	--waitingToGoOut[dst];
+
+	printf("User %d got out the bus on the stop %d... \n", id_user, dst);
 
 	pthread_cond_signal(&bus);
 	pthread_mutex_unlock(&m);
@@ -96,10 +106,14 @@ void goOutTheBus(int id_user, int dst)
 void user(int id_user, int og, int dst)
 {
 	// Esperar a que el autobus esté en parada origen para subir
+	printf("User %d is waiting on the stop %d to get on the bus... \n", id_user, og);
 	waitingToGoIn[og]++;
 	goOnTheBus(id_user, og);
 
+	sleep(random() % 4);
+
 	// Bajarme en estación destino
+	printf("User %d is waiting for the stop %d to get out the bus... \n", id_user, dst);
 	waitingToGoOut[dst]++;
 	goOutTheBus(id_user, dst);
 }
@@ -143,7 +157,7 @@ int main(int argc, char *argv[])
 
 	for (i = 0; i < USERS; i++)
 		// Crear thread para el usuario i
-		pthread_create(&tid_users[i], NULL, usersFunc, (void *)i);
+		pthread_create(&tid_users[i], NULL, usersFunc, (void *)(uintptr_t)i);
 
 	//Esperar a que termine el hilo
 	pthread_join(tid_bus, NULL);
