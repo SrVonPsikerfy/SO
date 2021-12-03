@@ -2,6 +2,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdint.h>
 
 #define true 1
 
@@ -47,7 +48,7 @@ void toSleep(int i) {
 }
 
 void* philosopher(void* i) {
-    int nPhilosopher = (int)i; //We are aware of this warning.
+    int nPhilosopher = (int)(uintptr_t)i; //We are aware of this warning.
     int right = nPhilosopher;
     int left = (nPhilosopher - 1 == -1) ? NUM_PHILOSOPHERS - 1 : (nPhilosopher - 1);
     while(true) {
