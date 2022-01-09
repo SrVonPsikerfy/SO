@@ -58,7 +58,7 @@ void busOnStop()
 
 	while ((numPassengers < MAX_USERS && waitingToGoIn[currStop] > 0) || waitingToGoOut[currStop] > 0) {
 		// each time someone gets in or out, every other user is notified of this so they can check if they can get in/out of the bus
-		pthread_cond_broadcast(&users); 
+		pthread_cond_broadcast(&users);
 		printf("Bus waiting on the stop %d...\n\n", currStop);
 		pthread_cond_wait(&bus, &m);
 	}
