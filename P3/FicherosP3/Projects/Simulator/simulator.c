@@ -35,9 +35,13 @@ void printInfo(const char * messi) {
 void driveToNextStop()
 {
 	/* Establecer un Retardo que simule el trayecto y actualizar numero de parada */
+	pthread_mutex_lock(&m);
+
 	printf("Bus DRIVING to the next stop \n\n");
 	sleep(random() % 2);
 	currStop = (currStop + 1 == NUM_STOPS) ? 0 : currStop + 1; // goes to the next stop
+
+	pthread_mutex_unlock(&m);
 }
 
 void busOnStop()
@@ -52,9 +56,9 @@ void busOnStop()
 
 	printInfo("GoIn: "); printInfo("GoOut: ");
 
-	pthread_cond_broadcast(&users);
-
 	while ((numPassengers < MAX_USERS && waitingToGoIn[currStop] > 0) || waitingToGoOut[currStop] > 0) {
+		// each time someone gets in or out, every other user is notified of this so they can check if they can get in/out of the bus
+		pthread_cond_broadcast(&users); 
 		printf("Bus waiting on the stop %d...\n\n", currStop);
 		pthread_cond_wait(&bus, &m);
 	}
@@ -62,7 +66,6 @@ void busOnStop()
 	state = DRIVING;
 	printf("Bus drove out the stop %d\n\n", currStop);
 
-	pthread_cond_broadcast(&users);
 	pthread_mutex_unlock(&m);
 }
 
@@ -83,6 +86,7 @@ void goOnTheBus(int id_user, int og)
 	el autobús se pare en dicha parada y subirá. El id_usuario puede utilizarse para
 	proporcionar información de depuración */
 	pthread_mutex_lock(&m);
+	waitingToGoIn[og]++;
 
 												 //currStop == og &&
 	while (state != ON_STOP || currStop != og || numPassengers == MAX_USERS) {
@@ -104,6 +108,7 @@ void goOutTheBus(int id_user, int dst)
 	el autobús se pare en dicha parada y bajará. El id_usuario puede utilizarse para
 	proporcionar información de depuración */
 	pthread_mutex_lock(&m);
+	waitingToGoOut[dst]++;
 
 	while (state != ON_STOP || currStop != dst) {
 		printf("ID: %d User-OUT waiting on stop %d...\n", id_user, dst);
@@ -122,14 +127,12 @@ void user(int id_user, int og, int dst)
 {
 	// Esperar a que el autobus esté en parada origen para subir
 	printf("ID: %d User is waiting on the stop %d to get IN the bus...\n\n", id_user, og);
-	waitingToGoIn[og]++;
 	goOnTheBus(id_user, og);
 
 	sleep(random() % 2);
 
 	// Bajarme en estación destino
 	printf("ID: %d User is waiting for the stop %d to get OUT the bus...\n\n", id_user, dst);
-	waitingToGoOut[dst]++;
 	goOutTheBus(id_user, dst);
 
 	sleep(random() % 2);

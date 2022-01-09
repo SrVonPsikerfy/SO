@@ -98,7 +98,7 @@ stHeaderEntry *readHeader(FILE *tarFile, int *nFiles)
 	if (newHeader == NULL)
 		return NULL;
 
-	// read the meta-information and stores it on the header
+	// read the meta-information and stores it on the headergoto FREE;
 	// (name of the file, and size of the file)
 	for (int i = 0; i < numFiles; i++)
 	{

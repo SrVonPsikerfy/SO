@@ -8,7 +8,6 @@
 
 #define NUM_PHILOSOPHERS 5
 
-
 int philoStates[NUM_PHILOSOPHERS];
 
 pthread_t philosophers[NUM_PHILOSOPHERS];
@@ -48,7 +47,7 @@ void toSleep(int i) {
 }
 
 void* philosopher(void* i) {
-    int nPhilosopher = (int)(uintptr_t)i; //We are aware of this warning.
+    int nPhilosopher = (int)(uintptr_t)i; //We are aware of this warning. [uintptr_r -> long long]
     int right = nPhilosopher;
     int left = (nPhilosopher - 1 == -1) ? NUM_PHILOSOPHERS - 1 : (nPhilosopher - 1);
     while(true) {
