@@ -9,9 +9,10 @@ mkdir "./mount-point"
 if [ -d "./temp" ]; then 
   rm -r "./temp"
 fi
-
 mkdir temp
-./fs-fuse -t 2097152 -a virtual-disk -f "-d -s mount-point" &
+
+./fs-fuse -t 2097152 -a virtual-disk -f "-d -s mount-point" >log.txt 2>&1 &
+sleep 1 # wait for the process to mount the FS (at least)
 
 ./my-fsck "virtual-disk" 1>/dev/null
 

@@ -321,7 +321,7 @@ static int my_read(const char *path, char *buf, size_t size, off_t offset, struc
 	NodeStruct *iNode = myFileSystem.nodes[fi->fh];	
 
     // if the offset is bigger than the stored data from the iNode, it goes outside the file
-    if (offset + size >= iNode->fileSize) {
+    if (offset + size >= iNode->fileSize) { // filesize --> user size, not real
         size -= (offset - iNode->fileSize > 0) ? size : (offset + size) - iNode->fileSize;
     }
 

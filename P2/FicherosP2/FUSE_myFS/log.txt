@@ -1,0 +1,884 @@
+File system available
+FUSE library version: 2.9.9
+nullpath_ok: 0
+nopath: 0
+utime_omit_ok: 0
+unique: 2, opcode: INIT (26), nodeid: 0, insize: 56, pid: 0
+INIT: 7.31
+flags=0x03fffffb
+max_readahead=0x00020000
+   INIT: 7.19
+   flags=0x00000011
+   max_readahead=0x00020000
+   max_write=0x00020000
+   max_background=0
+   congestion_threshold=0
+   unique: 2, success, outsize: 40
+unique: 4, opcode: ACCESS (34), nodeid: 1, insize: 48, pid: 1614
+   unique: 4, error: -38 (Function not implemented), outsize: 16
+unique: 6, opcode: LOOKUP (1), nodeid: 1, insize: 47, pid: 1614
+LOOKUP /.Trash
+getattr /.Trash
+--->>>my_getattr: path /.Trash
+   unique: 6, error: -2 (No such file or directory), outsize: 16
+unique: 8, opcode: LOOKUP (1), nodeid: 1, insize: 52, pid: 1614
+LOOKUP /.Trash-1000
+getattr /.Trash-1000
+--->>>my_getattr: path /.Trash-1000
+   unique: 8, error: -2 (No such file or directory), outsize: 16
+unique: 10, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 10, success, outsize: 32
+unique: 12, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 12, success, outsize: 120
+unique: 14, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 14, success, outsize: 80
+unique: 16, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 16, success, outsize: 16
+unique: 18, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 18, success, outsize: 16
+unique: 20, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 20, success, outsize: 32
+unique: 22, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 22, success, outsize: 120
+unique: 24, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 24, success, outsize: 80
+unique: 26, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 26, success, outsize: 16
+unique: 28, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 28, success, outsize: 16
+unique: 30, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 30, success, outsize: 32
+unique: 32, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 32, success, outsize: 120
+unique: 34, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 34, success, outsize: 80
+unique: 36, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 36, success, outsize: 16
+unique: 38, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 38, success, outsize: 16
+unique: 40, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 40, success, outsize: 32
+unique: 42, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 42, success, outsize: 120
+unique: 44, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 44, success, outsize: 80
+unique: 46, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 46, success, outsize: 16
+unique: 48, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 48, success, outsize: 16
+unique: 50, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 50, success, outsize: 32
+unique: 52, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 52, success, outsize: 120
+unique: 54, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 54, success, outsize: 80
+unique: 56, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 56, success, outsize: 16
+unique: 58, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 58, success, outsize: 16
+unique: 60, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 60, success, outsize: 32
+unique: 62, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 62, success, outsize: 120
+unique: 64, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 64, success, outsize: 80
+unique: 66, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 66, success, outsize: 16
+unique: 68, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 68, success, outsize: 16
+unique: 70, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 70, success, outsize: 32
+unique: 72, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 72, success, outsize: 120
+unique: 74, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 74, success, outsize: 80
+unique: 76, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 76, success, outsize: 16
+unique: 78, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 78, success, outsize: 16
+unique: 80, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 80, success, outsize: 32
+unique: 82, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 82, success, outsize: 120
+unique: 84, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 84, success, outsize: 80
+unique: 86, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 86, success, outsize: 16
+unique: 88, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 88, success, outsize: 16
+unique: 90, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 90, success, outsize: 32
+unique: 92, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 92, success, outsize: 120
+unique: 94, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 94, success, outsize: 80
+unique: 96, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 96, success, outsize: 16
+unique: 98, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 98, success, outsize: 16
+unique: 100, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 100, success, outsize: 32
+unique: 102, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 102, success, outsize: 120
+unique: 104, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 104, success, outsize: 80
+unique: 106, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 106, success, outsize: 16
+unique: 108, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 108, success, outsize: 16
+unique: 110, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 110, success, outsize: 32
+unique: 112, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 112, success, outsize: 120
+unique: 114, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 114, success, outsize: 80
+unique: 116, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 116, success, outsize: 16
+unique: 118, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 118, success, outsize: 16
+unique: 120, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 120, success, outsize: 32
+unique: 122, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 122, success, outsize: 120
+unique: 124, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 124, success, outsize: 80
+unique: 126, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 126, success, outsize: 16
+unique: 128, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 128, success, outsize: 16
+unique: 130, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 130, success, outsize: 32
+unique: 132, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 132, success, outsize: 120
+unique: 134, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 134, success, outsize: 80
+unique: 136, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 136, success, outsize: 16
+unique: 138, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 138, success, outsize: 16
+unique: 140, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 140, success, outsize: 32
+unique: 142, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 142, success, outsize: 120
+unique: 144, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 144, success, outsize: 80
+unique: 146, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 146, success, outsize: 16
+unique: 148, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 148, success, outsize: 16
+unique: 150, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 150, success, outsize: 32
+unique: 152, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 152, success, outsize: 120
+unique: 154, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 154, success, outsize: 80
+unique: 156, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 156, success, outsize: 16
+unique: 158, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 158, success, outsize: 16
+unique: 160, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 160, success, outsize: 32
+unique: 162, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 162, success, outsize: 120
+unique: 164, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 164, success, outsize: 80
+unique: 166, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 166, success, outsize: 16
+unique: 168, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 168, success, outsize: 16
+unique: 170, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 170, success, outsize: 32
+unique: 172, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1872
+getattr /
+--->>>my_getattr: path /
+   unique: 172, success, outsize: 120
+unique: 174, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 174, success, outsize: 80
+unique: 176, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 176, success, outsize: 16
+unique: 178, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 178, success, outsize: 16
+unique: 180, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 180, success, outsize: 32
+unique: 182, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 182, success, outsize: 120
+unique: 184, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 184, success, outsize: 80
+unique: 186, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 186, success, outsize: 16
+unique: 188, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 188, success, outsize: 16
+unique: 190, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 190, success, outsize: 32
+unique: 192, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 192, success, outsize: 120
+unique: 194, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 194, success, outsize: 80
+unique: 196, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 196, success, outsize: 16
+unique: 198, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 198, success, outsize: 16
+unique: 200, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 200, success, outsize: 32
+unique: 202, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 202, success, outsize: 120
+unique: 204, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 204, success, outsize: 80
+unique: 206, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 206, success, outsize: 16
+unique: 208, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 208, success, outsize: 16
+unique: 210, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 210, success, outsize: 32
+unique: 212, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 212, success, outsize: 120
+unique: 214, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 214, success, outsize: 80
+unique: 216, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 216, success, outsize: 16
+unique: 218, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 218, success, outsize: 16
+unique: 220, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 220, success, outsize: 32
+unique: 222, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 222, success, outsize: 120
+unique: 224, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 224, success, outsize: 80
+unique: 226, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 226, success, outsize: 16
+unique: 228, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 228, success, outsize: 16
+unique: 230, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 230, success, outsize: 32
+unique: 232, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 232, success, outsize: 120
+unique: 234, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 234, success, outsize: 80
+unique: 236, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 236, success, outsize: 16
+unique: 238, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 238, success, outsize: 16
+unique: 240, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 240, success, outsize: 32
+unique: 242, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 242, success, outsize: 120
+unique: 244, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 244, success, outsize: 80
+unique: 246, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 246, success, outsize: 16
+unique: 248, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 248, success, outsize: 16
+unique: 250, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 1307
+   unique: 250, success, outsize: 32
+unique: 252, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1307
+getattr /
+--->>>my_getattr: path /
+   unique: 252, success, outsize: 120
+unique: 254, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 254, success, outsize: 80
+unique: 256, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 1307
+   unique: 256, success, outsize: 16
+unique: 258, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 258, success, outsize: 16
+unique: 260, opcode: LOOKUP (1), nodeid: 1, insize: 57, pid: 4913
+LOOKUP /.xdg-volume-info
+getattr /.xdg-volume-info
+--->>>my_getattr: path /.xdg-volume-info
+   unique: 260, error: -2 (No such file or directory), outsize: 16
+unique: 262, opcode: LOOKUP (1), nodeid: 1, insize: 52, pid: 4913
+LOOKUP /autorun.inf
+getattr /autorun.inf
+--->>>my_getattr: path /autorun.inf
+   unique: 262, error: -2 (No such file or directory), outsize: 16
+unique: 264, opcode: OPENDIR (27), nodeid: 1, insize: 48, pid: 4912
+   unique: 264, success, outsize: 32
+unique: 266, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 4912
+getattr /
+--->>>my_getattr: path /
+   unique: 266, success, outsize: 120
+unique: 268, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 4913
+readdir[0] from 0
+--->>>my_readdir: path /, offset 0
+   unique: 268, success, outsize: 80
+unique: 270, opcode: READDIR (28), nodeid: 1, insize: 80, pid: 4913
+   unique: 270, success, outsize: 16
+unique: 272, opcode: RELEASEDIR (29), nodeid: 1, insize: 64, pid: 0
+   unique: 272, success, outsize: 16
+unique: 274, opcode: LOOKUP (1), nodeid: 1, insize: 52, pid: 4912
+LOOKUP /autorun.inf
+getattr /autorun.inf
+--->>>my_getattr: path /autorun.inf
+   unique: 274, error: -2 (No such file or directory), outsize: 16
+unique: 276, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1873
+getattr /
+--->>>my_getattr: path /
+   unique: 276, success, outsize: 120
+unique: 278, opcode: LOOKUP (1), nodeid: 1, insize: 50, pid: 4926
+LOOKUP /fuseLib.c
+getattr /fuseLib.c
+--->>>my_getattr: path /fuseLib.c
+   unique: 278, error: -2 (No such file or directory), outsize: 16
+unique: 280, opcode: LOOKUP (1), nodeid: 1, insize: 50, pid: 4926
+LOOKUP /fuseLib.c
+getattr /fuseLib.c
+--->>>my_getattr: path /fuseLib.c
+   unique: 280, error: -2 (No such file or directory), outsize: 16
+unique: 282, opcode: CREATE (35), nodeid: 1, insize: 66, pid: 4926
+   unique: 282, error: -38 (Function not implemented), outsize: 16
+unique: 284, opcode: MKNOD (8), nodeid: 1, insize: 66, pid: 4926
+mknod /fuseLib.c 0100664 0x0 umask=0002
+--->>>my_mknod: path /fuseLib.c, mode rw-rw-r--, major 0, minor 0
+getattr /fuseLib.c
+--->>>my_getattr: path /fuseLib.c
+   NODEID: 2
+   unique: 284, success, outsize: 144
+unique: 286, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 4926
+open flags: 0x8001 /fuseLib.c
+--->>>my_open: path /fuseLib.c, flags 32769, 0
+   open[0] flags: 0x8001 /fuseLib.c
+   unique: 286, success, outsize: 32
+unique: 288, opcode: GETXATTR (22), nodeid: 2, insize: 68, pid: 4926
+   unique: 288, error: -38 (Function not implemented), outsize: 16
+unique: 290, opcode: WRITE (16), nodeid: 2, insize: 4176, pid: 4926
+write[0] 4096 bytes to 0 flags: 0x8001
+--->>>my_write: path /fuseLib.c, size 4096, offset 0, fh 0
+   write[0] 4096 bytes to 0
+   unique: 290, success, outsize: 24
+unique: 292, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1872
+getattr /
+--->>>my_getattr: path /
+   unique: 292, success, outsize: 120
+unique: 294, opcode: WRITE (16), nodeid: 2, insize: 4176, pid: 4926
+write[0] 4096 bytes to 4096 flags: 0x8001
+--->>>my_write: path /fuseLib.c, size 4096, offset 4096, fh 0
+   write[0] 4096 bytes to 4096
+   unique: 294, success, outsize: 24
+unique: 296, opcode: WRITE (16), nodeid: 2, insize: 4176, pid: 4926
+write[0] 4096 bytes to 8192 flags: 0x8001
+--->>>my_write: path /fuseLib.c, size 4096, offset 8192, fh 0
+   write[0] 4096 bytes to 8192
+   unique: 296, success, outsize: 24
+unique: 298, opcode: WRITE (16), nodeid: 2, insize: 4176, pid: 4926
+write[0] 4096 bytes to 12288 flags: 0x8001
+--->>>my_write: path /fuseLib.c, size 4096, offset 12288, fh 0
+   write[0] 4096 bytes to 12288
+   unique: 298, success, outsize: 24
+unique: 300, opcode: WRITE (16), nodeid: 2, insize: 4176, pid: 4926
+write[0] 4096 bytes to 16384 flags: 0x8001
+--->>>my_write: path /fuseLib.c, size 4096, offset 16384, fh 0
+   write[0] 4096 bytes to 16384
+   unique: 300, success, outsize: 24
+unique: 302, opcode: WRITE (16), nodeid: 2, insize: 703, pid: 4926
+write[0] 623 bytes to 20480 flags: 0x8001
+--->>>my_write: path /fuseLib.c, size 623, offset 20480, fh 0
+   write[0] 623 bytes to 20480
+   unique: 302, success, outsize: 24
+unique: 304, opcode: FLUSH (25), nodeid: 2, insize: 64, pid: 4926
+   unique: 304, error: -38 (Function not implemented), outsize: 16
+unique: 306, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+release[0] flags: 0x8001
+--->>>my_release: path /fuseLib.c
+   unique: 306, success, outsize: 16
+unique: 308, opcode: LOOKUP (1), nodeid: 1, insize: 47, pid: 4933
+LOOKUP /myFS.h
+getattr /myFS.h
+--->>>my_getattr: path /myFS.h
+   unique: 308, error: -2 (No such file or directory), outsize: 16
+unique: 310, opcode: LOOKUP (1), nodeid: 1, insize: 47, pid: 4933
+LOOKUP /myFS.h
+getattr /myFS.h
+--->>>my_getattr: path /myFS.h
+   unique: 310, error: -2 (No such file or directory), outsize: 16
+unique: 312, opcode: MKNOD (8), nodeid: 1, insize: 63, pid: 4933
+mknod /myFS.h 0100664 0x0 umask=0002
+--->>>my_mknod: path /myFS.h, mode rw-rw-r--, major 0, minor 0
+getattr /myFS.h
+--->>>my_getattr: path /myFS.h
+   NODEID: 3
+   unique: 312, success, outsize: 144
+unique: 314, opcode: OPEN (14), nodeid: 3, insize: 48, pid: 4933
+open flags: 0x8001 /myFS.h
+--->>>my_open: path /myFS.h, flags 32769, 0
+   open[1] flags: 0x8001 /myFS.h
+   unique: 314, success, outsize: 32
+unique: 316, opcode: WRITE (16), nodeid: 3, insize: 4176, pid: 4933
+write[1] 4096 bytes to 0 flags: 0x8001
+--->>>my_write: path /myFS.h, size 4096, offset 0, fh 1
+   write[1] 4096 bytes to 0
+   unique: 316, success, outsize: 24
+unique: 318, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1875
+getattr /
+--->>>my_getattr: path /
+   unique: 318, success, outsize: 120
+unique: 320, opcode: WRITE (16), nodeid: 3, insize: 3479, pid: 4933
+write[1] 3399 bytes to 4096 flags: 0x8001
+--->>>my_write: path /myFS.h, size 3399, offset 4096, fh 1
+   write[1] 3399 bytes to 4096
+   unique: 320, success, outsize: 24
+unique: 322, opcode: RELEASE (18), nodeid: 3, insize: 64, pid: 0
+release[1] flags: 0x8001
+--->>>my_release: path /myFS.h
+   unique: 322, success, outsize: 16
+unique: 324, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 4935
+getattr /fuseLib.c
+--->>>my_getattr: path /fuseLib.c
+   unique: 324, success, outsize: 120
+unique: 326, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 4935
+open flags: 0x8000 /fuseLib.c
+--->>>my_open: path /fuseLib.c, flags 32768, 0
+   open[0] flags: 0x8000 /fuseLib.c
+   unique: 326, success, outsize: 32
+unique: 328, opcode: READ (15), nodeid: 2, insize: 80, pid: 4935
+read[0] 16384 bytes from 0 flags: 0x8000
+--->>>my_read: path /fuseLib.c, size 16384, offset 0, fh 0
+   read[0] 16384 bytes from 0
+   unique: 328, success, outsize: 16400
+unique: 330, opcode: READ (15), nodeid: 2, insize: 80, pid: 4935
+read[0] 8192 bytes from 16384 flags: 0x8000
+--->>>my_read: path /fuseLib.c, size 8192, offset 16384, fh 0
+   read[0] 4719 bytes from 16384
+   unique: 330, success, outsize: 4735
+unique: 332, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+release[0] flags: 0x8000
+--->>>my_release: path /fuseLib.c
+   unique: 332, success, outsize: 16
+unique: 334, opcode: GETATTR (3), nodeid: 3, insize: 56, pid: 4936
+getattr /myFS.h
+--->>>my_getattr: path /myFS.h
+   unique: 334, success, outsize: 120
+unique: 336, opcode: OPEN (14), nodeid: 3, insize: 48, pid: 4936
+open flags: 0x8000 /myFS.h
+--->>>my_open: path /myFS.h, flags 32768, 0
+   open[1] flags: 0x8000 /myFS.h
+   unique: 336, success, outsize: 32
+unique: 338, opcode: READ (15), nodeid: 3, insize: 80, pid: 4936
+read[1] 8192 bytes from 0 flags: 0x8000
+--->>>my_read: path /myFS.h, size 8192, offset 0, fh 1
+   read[1] 7495 bytes from 0
+   unique: 338, success, outsize: 7511
+unique: 340, opcode: RELEASE (18), nodeid: 3, insize: 64, pid: 0
+release[1] flags: 0x8000
+--->>>my_release: path /myFS.h
+   unique: 340, success, outsize: 16
+unique: 342, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 4938
+open flags: 0x8801 /fuseLib.c
+--->>>my_open: path /fuseLib.c, flags 34817, 0
+   open[0] flags: 0x8801 /fuseLib.c
+   unique: 342, success, outsize: 32
+unique: 344, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 4938
+getattr /fuseLib.c
+--->>>my_getattr: path /fuseLib.c
+   unique: 344, success, outsize: 120
+unique: 346, opcode: SETATTR (4), nodeid: 2, insize: 128, pid: 4938
+truncate /fuseLib.c 17007
+--->>>my_truncate: path /fuseLib.c, size 17007
+getattr /fuseLib.c
+--->>>my_getattr: path /fuseLib.c
+   unique: 346, success, outsize: 120
+unique: 348, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+release[0] flags: 0x8801
+--->>>my_release: path /fuseLib.c
+   unique: 348, success, outsize: 16
+unique: 350, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 4940
+open flags: 0x8000 /fuseLib.c
+--->>>my_open: path /fuseLib.c, flags 32768, 0
+   open[0] flags: 0x8000 /fuseLib.c
+   unique: 350, success, outsize: 32
+unique: 352, opcode: READ (15), nodeid: 2, insize: 80, pid: 4940
+read[0] 16384 bytes from 0 flags: 0x8000
+--->>>my_read: path /fuseLib.c, size 16384, offset 0, fh 0
+   read[0] 16384 bytes from 0
+   unique: 352, success, outsize: 16400
+unique: 354, opcode: READ (15), nodeid: 2, insize: 80, pid: 4940
+read[0] 4096 bytes from 16384 flags: 0x8000
+--->>>my_read: path /fuseLib.c, size 4096, offset 16384, fh 0
+   read[0] 623 bytes from 16384
+   unique: 354, success, outsize: 639
+unique: 356, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+release[0] flags: 0x8000
+--->>>my_release: path /fuseLib.c
+   unique: 356, success, outsize: 16
+unique: 358, opcode: LOOKUP (1), nodeid: 1, insize: 49, pid: 4941
+LOOKUP /Makefile
+getattr /Makefile
+--->>>my_getattr: path /Makefile
+   unique: 358, error: -2 (No such file or directory), outsize: 16
+unique: 360, opcode: LOOKUP (1), nodeid: 1, insize: 49, pid: 4941
+LOOKUP /Makefile
+getattr /Makefile
+--->>>my_getattr: path /Makefile
+   unique: 360, error: -2 (No such file or directory), outsize: 16
+unique: 362, opcode: MKNOD (8), nodeid: 1, insize: 65, pid: 4941
+mknod /Makefile 0100664 0x0 umask=0002
+--->>>my_mknod: path /Makefile, mode rw-rw-r--, major 0, minor 0
+getattr /Makefile
+--->>>my_getattr: path /Makefile
+   NODEID: 4
+   unique: 362, success, outsize: 144
+unique: 364, opcode: OPEN (14), nodeid: 4, insize: 48, pid: 4941
+open flags: 0x8001 /Makefile
+--->>>my_open: path /Makefile, flags 32769, 0
+   open[2] flags: 0x8001 /Makefile
+   unique: 364, success, outsize: 32
+unique: 366, opcode: WRITE (16), nodeid: 4, insize: 537, pid: 4941
+write[2] 457 bytes to 0 flags: 0x8001
+--->>>my_write: path /Makefile, size 457, offset 0, fh 2
+   write[2] 457 bytes to 0
+   unique: 366, success, outsize: 24
+unique: 368, opcode: RELEASE (18), nodeid: 4, insize: 64, pid: 0
+release[2] flags: 0x8001
+--->>>my_release: path /Makefile
+   unique: 368, success, outsize: 16
+unique: 370, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1874
+getattr /
+--->>>my_getattr: path /
+   unique: 370, success, outsize: 120
+unique: 372, opcode: GETATTR (3), nodeid: 4, insize: 56, pid: 4943
+getattr /Makefile
+--->>>my_getattr: path /Makefile
+   unique: 372, success, outsize: 120
+unique: 374, opcode: OPEN (14), nodeid: 4, insize: 48, pid: 4943
+open flags: 0x8000 /Makefile
+--->>>my_open: path /Makefile, flags 32768, 0
+   open[2] flags: 0x8000 /Makefile
+   unique: 374, success, outsize: 32
+unique: 376, opcode: READ (15), nodeid: 4, insize: 80, pid: 4943
+read[2] 4096 bytes from 0 flags: 0x8000
+--->>>my_read: path /Makefile, size 4096, offset 0, fh 2
+   read[2] 457 bytes from 0
+   unique: 376, success, outsize: 473
+unique: 378, opcode: RELEASE (18), nodeid: 4, insize: 64, pid: 0
+release[2] flags: 0x8000
+--->>>my_release: path /Makefile
+   unique: 378, success, outsize: 16
+unique: 380, opcode: OPEN (14), nodeid: 3, insize: 48, pid: 4945
+open flags: 0x8801 /myFS.h
+--->>>my_open: path /myFS.h, flags 34817, 0
+   open[1] flags: 0x8801 /myFS.h
+   unique: 380, success, outsize: 32
+unique: 382, opcode: SETATTR (4), nodeid: 3, insize: 128, pid: 4945
+truncate /myFS.h 4096
+--->>>my_truncate: path /myFS.h, size 4096
+getattr /myFS.h
+--->>>my_getattr: path /myFS.h
+   unique: 382, success, outsize: 120
+unique: 384, opcode: RELEASE (18), nodeid: 3, insize: 64, pid: 0
+release[1] flags: 0x8801
+--->>>my_release: path /myFS.h
+   unique: 384, success, outsize: 16
+unique: 386, opcode: OPEN (14), nodeid: 3, insize: 48, pid: 4947
+open flags: 0x8000 /myFS.h
+--->>>my_open: path /myFS.h, flags 32768, 0
+   open[1] flags: 0x8000 /myFS.h
+   unique: 386, success, outsize: 32
+unique: 388, opcode: READ (15), nodeid: 3, insize: 80, pid: 4947
+read[1] 4096 bytes from 0 flags: 0x8000
+--->>>my_read: path /myFS.h, size 4096, offset 0, fh 1
+   read[1] 4096 bytes from 0
+   unique: 388, success, outsize: 4112
+unique: 390, opcode: READ (15), nodeid: 3, insize: 80, pid: 4947
+read[1] 4096 bytes from 4096 flags: 0x8000
+--->>>my_read: path /myFS.h, size 4096, offset 4096, fh 1
+   read[1] 0 bytes from 4096
+   unique: 390, success, outsize: 16
+unique: 392, opcode: RELEASE (18), nodeid: 3, insize: 64, pid: 0
+release[1] flags: 0x8000
+--->>>my_release: path /myFS.h
+   unique: 392, success, outsize: 16
+unique: 394, opcode: LOOKUP (1), nodeid: 1, insize: 50, pid: 4948
+LOOKUP /short.txt
+getattr /short.txt
+--->>>my_getattr: path /short.txt
+   unique: 394, error: -2 (No such file or directory), outsize: 16
+unique: 396, opcode: LOOKUP (1), nodeid: 1, insize: 50, pid: 4948
+LOOKUP /short.txt
+getattr /short.txt
+--->>>my_getattr: path /short.txt
+   unique: 396, error: -2 (No such file or directory), outsize: 16
+unique: 398, opcode: MKNOD (8), nodeid: 1, insize: 66, pid: 4948
+mknod /short.txt 0100664 0x0 umask=0002
+--->>>my_mknod: path /short.txt, mode rw-rw-r--, major 0, minor 0
+getattr /short.txt
+--->>>my_getattr: path /short.txt
+   NODEID: 5
+   unique: 398, success, outsize: 144
+unique: 400, opcode: OPEN (14), nodeid: 5, insize: 48, pid: 4948
+open flags: 0x8001 /short.txt
+--->>>my_open: path /short.txt, flags 32769, 0
+   open[3] flags: 0x8001 /short.txt
+   unique: 400, success, outsize: 32
+unique: 402, opcode: WRITE (16), nodeid: 5, insize: 92, pid: 4948
+write[3] 12 bytes to 0 flags: 0x8001
+--->>>my_write: path /short.txt, size 12, offset 0, fh 3
+   write[3] 12 bytes to 0
+   unique: 402, success, outsize: 24
+unique: 404, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1872
+getattr /
+--->>>my_getattr: path /
+   unique: 404, success, outsize: 120
+unique: 406, opcode: RELEASE (18), nodeid: 5, insize: 64, pid: 0
+release[3] flags: 0x8001
+--->>>my_release: path /short.txt
+   unique: 406, success, outsize: 16
+unique: 408, opcode: LOOKUP (1), nodeid: 1, insize: 49, pid: 4949
+LOOKUP /long.txt
+getattr /long.txt
+--->>>my_getattr: path /long.txt
+   unique: 408, error: -2 (No such file or directory), outsize: 16
+unique: 410, opcode: LOOKUP (1), nodeid: 1, insize: 49, pid: 4949
+LOOKUP /long.txt
+getattr /long.txt
+--->>>my_getattr: path /long.txt
+   unique: 410, error: -2 (No such file or directory), outsize: 16
+unique: 412, opcode: MKNOD (8), nodeid: 1, insize: 65, pid: 4949
+mknod /long.txt 0100664 0x0 umask=0002
+--->>>my_mknod: path /long.txt, mode rw-rw-r--, major 0, minor 0
+getattr /long.txt
+--->>>my_getattr: path /long.txt
+   NODEID: 6
+   unique: 412, success, outsize: 144
+unique: 414, opcode: OPEN (14), nodeid: 6, insize: 48, pid: 4949
+open flags: 0x8001 /long.txt
+--->>>my_open: path /long.txt, flags 32769, 0
+   open[4] flags: 0x8001 /long.txt
+   unique: 414, success, outsize: 32
+unique: 416, opcode: WRITE (16), nodeid: 6, insize: 4176, pid: 4949
+write[4] 4096 bytes to 0 flags: 0x8001
+--->>>my_write: path /long.txt, size 4096, offset 0, fh 4
+   write[4] 4096 bytes to 0
+   unique: 416, success, outsize: 24
+unique: 418, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1875
+getattr /
+--->>>my_getattr: path /
+   unique: 418, success, outsize: 120
+unique: 420, opcode: WRITE (16), nodeid: 6, insize: 4176, pid: 4949
+write[4] 4096 bytes to 4096 flags: 0x8001
+--->>>my_write: path /long.txt, size 4096, offset 4096, fh 4
+   write[4] 4096 bytes to 4096
+   unique: 420, success, outsize: 24
+unique: 422, opcode: WRITE (16), nodeid: 6, insize: 82, pid: 4949
+write[4] 2 bytes to 8192 flags: 0x8001
+--->>>my_write: path /long.txt, size 2, offset 8192, fh 4
+   write[4] 2 bytes to 8192
+   unique: 422, success, outsize: 24
+unique: 424, opcode: RELEASE (18), nodeid: 6, insize: 64, pid: 0
+release[4] flags: 0x8001
+--->>>my_release: path /long.txt
+   unique: 424, success, outsize: 16
+unique: 426, opcode: LOOKUP (1), nodeid: 1, insize: 56, pid: 4901
+LOOKUP /outputShort.txt
+getattr /outputShort.txt
+--->>>my_getattr: path /outputShort.txt
+   unique: 426, error: -2 (No such file or directory), outsize: 16
+unique: 428, opcode: MKNOD (8), nodeid: 1, insize: 72, pid: 4901
+mknod /outputShort.txt 0100664 0x0 umask=0002
+--->>>my_mknod: path /outputShort.txt, mode rw-rw-r--, major 0, minor 0
+getattr /outputShort.txt
+--->>>my_getattr: path /outputShort.txt
+   NODEID: 7
+   unique: 428, success, outsize: 144
+unique: 430, opcode: OPEN (14), nodeid: 7, insize: 48, pid: 4901
+open flags: 0x8001 /outputShort.txt
+--->>>my_open: path /outputShort.txt, flags 32769, 0
+   open[5] flags: 0x8001 /outputShort.txt
+   unique: 430, success, outsize: 32
+unique: 432, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1875
+getattr /
+--->>>my_getattr: path /
+   unique: 432, success, outsize: 120
+unique: 434, opcode: OPEN (14), nodeid: 6, insize: 48, pid: 4950
+open flags: 0x8000 /long.txt
+--->>>my_open: path /long.txt, flags 32768, 0
+   open[4] flags: 0x8000 /long.txt
+   unique: 434, success, outsize: 32
+unique: 436, opcode: GETATTR (3), nodeid: 6, insize: 56, pid: 4950
+getattr /long.txt
+--->>>my_getattr: path /long.txt
+   unique: 436, success, outsize: 120
+unique: 438, opcode: READ (15), nodeid: 6, insize: 80, pid: 4950
+read[4] 12288 bytes from 0 flags: 0x8000
+--->>>my_read: path /long.txt, size 12288, offset 0, fh 4
+   read[4] 8194 bytes from 0
+   unique: 438, success, outsize: 8210
+unique: 440, opcode: WRITE (16), nodeid: 7, insize: 4176, pid: 4950
+write[5] 4096 bytes to 0 flags: 0x8001
+--->>>my_write: path /outputShort.txt, size 4096, offset 0, fh 5
+   write[5] 4096 bytes to 0
+   unique: 440, success, outsize: 24
+unique: 442, opcode: WRITE (16), nodeid: 7, insize: 4176, pid: 4950
+write[5] 4096 bytes to 4096 flags: 0x8001
+--->>>my_write: path /outputShort.txt, size 4096, offset 4096, fh 5
+   write[5] 4096 bytes to 4096
+   unique: 442, success, outsize: 24
+unique: 444, opcode: WRITE (16), nodeid: 7, insize: 82, pid: 4950
+write[5] 2 bytes to 8192 flags: 0x8001
+--->>>my_write: path /outputShort.txt, size 2, offset 8192, fh 5
+   write[5] 2 bytes to 8192
+   unique: 444, success, outsize: 24
+unique: 446, opcode: RELEASE (18), nodeid: 6, insize: 64, pid: 0
+release[4] flags: 0x8000
+--->>>my_release: path /long.txt
+   unique: 446, success, outsize: 16
+unique: 448, opcode: RELEASE (18), nodeid: 7, insize: 64, pid: 0
+release[5] flags: 0x8001
+--->>>my_release: path /outputShort.txt
+   unique: 448, success, outsize: 16
+unique: 450, opcode: GETATTR (3), nodeid: 6, insize: 56, pid: 4951
+getattr /long.txt
+--->>>my_getattr: path /long.txt
+   unique: 450, success, outsize: 120
+unique: 452, opcode: GETATTR (3), nodeid: 7, insize: 56, pid: 4951
+getattr /outputShort.txt
+--->>>my_getattr: path /outputShort.txt
+   unique: 452, success, outsize: 120
+unique: 454, opcode: OPEN (14), nodeid: 6, insize: 48, pid: 4951
+open flags: 0x8000 /long.txt
+--->>>my_open: path /long.txt, flags 32768, 0
+   open[4] flags: 0x8000 /long.txt
+   unique: 454, success, outsize: 32
+unique: 456, opcode: OPEN (14), nodeid: 7, insize: 48, pid: 4951
+open flags: 0x8000 /outputShort.txt
+--->>>my_open: path /outputShort.txt, flags 32768, 0
+   open[5] flags: 0x8000 /outputShort.txt
+   unique: 456, success, outsize: 32
+unique: 458, opcode: READ (15), nodeid: 6, insize: 80, pid: 4951
+read[4] 12288 bytes from 0 flags: 0x8000
+--->>>my_read: path /long.txt, size 12288, offset 0, fh 4
+   read[4] 8194 bytes from 0
+   unique: 458, success, outsize: 8210
+unique: 460, opcode: READ (15), nodeid: 7, insize: 80, pid: 4951
+read[5] 12288 bytes from 0 flags: 0x8000
+--->>>my_read: path /outputShort.txt, size 12288, offset 0, fh 5
+   read[5] 8194 bytes from 0
+   unique: 460, success, outsize: 8210
+unique: 462, opcode: RELEASE (18), nodeid: 6, insize: 64, pid: 0
+release[4] flags: 0x8000
+--->>>my_release: path /long.txt
+   unique: 462, success, outsize: 16
+unique: 464, opcode: RELEASE (18), nodeid: 7, insize: 64, pid: 0
+release[5] flags: 0x8000
+--->>>my_release: path /outputShort.txt
+   unique: 464, success, outsize: 16
+unique: 466, opcode: GETATTR (3), nodeid: 5, insize: 56, pid: 4952
+getattr /short.txt
+--->>>my_getattr: path /short.txt
+   unique: 466, success, outsize: 120
+unique: 468, opcode: UNLINK (10), nodeid: 1, insize: 50, pid: 4952
+unlink /short.txt
+--->>>my_unlink: path /short.txt
+   unique: 468, success, outsize: 16
+unique: 470, opcode: FORGET (2), nodeid: 5, insize: 48, pid: 0
+FORGET 5/1
+DELETE: 5
+unique: 472, opcode: LOOKUP (1), nodeid: 1, insize: 50, pid: 4901
+LOOKUP /short.txt
+getattr /short.txt
+--->>>my_getattr: path /short.txt
+   unique: 472, error: -2 (No such file or directory), outsize: 16
+unique: 474, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 1873
+getattr /
+--->>>my_getattr: path /
+   unique: 474, success, outsize: 120
+SF: virtual-disk, 2097152 B (4096 B/block), 512 blocks
+1 block for SUPERBLOCK (32 B)
+1 block for BITMAP, covering 1024 blocks, 4194304 B
+1 block for DIRECTORY (2404 B)
+5 blocks for inodes (424 B/inode, 45 inodes)
+504 blocks for data (2064384 B)
+Formatting completed!
